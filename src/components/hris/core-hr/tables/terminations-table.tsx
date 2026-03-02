@@ -1,0 +1,106 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { terminationService } from "@/services/core-hr.service";
+import type { CoreHrFilters, Termination } from "@/types/core-hr";
+import {
+  Add as AddIcon,
+  Delete as DeleteIcon,
+  Edit as EditIcon,
+  Search as SearchIcon
+} from "@mui/icons-material";
+import { useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
+import * as React from "react";
+
+interface TerminationsTableProps {
+  filters: CoreHrFilters;
+  onFiltersChange: (filters: CoreHrFilters) => void;
+  onAdd: () => void;
+  onEdit: (termination: Termination) => void;
+  onDelete: (id: string) => void;
+  isDeleting?: boolean;
+}
+
+export function TerminationsTable({
+  filters,
+  onFiltersChange,
+  onAdd,
+  onEdit,
+  onDelete,
+  isDeleting = false,
+}: TerminationsTableProps) {
+  const [search, setSearch] = React.useState(filters.search || "");
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["terminations", filters],
+    queryFn: () => terminationService.getAll(filters),
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
+  const terminations = data?.data || [];
+
+  const handleSearch = (value: string) => {
+    setSearch(value);
+    onFiltersChange({ ...filters, search: value || undefined, page: 1 });
+  };
+
+  return (
+    <div className="rounded-xl bg-card overflow-hidden border">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border-b">
+        <span className="font-semibold">Terminations</span>
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1 sm:flex-none">
+            <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
+            <Input placeholder="Search..." value={search} onChange={(e) => handleSearch(e.target.value)} className="pl-9 w-full sm:w-[220px] h-9" />
+          </div>
+          <Button onClick={onAdd} size="sm">
+            <AddIcon className="size-5 mr-2" /> Add
+          </Button>
+        </div>
+      </div>
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Termination To</TableHead>
+              <TableHead>Termination Type</TableHead>
+              <TableHead>Termination Date</TableHead>
+              <TableHead>Notice Date</TableHead>
+              <TableHead>Description</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {isLoading ? (
+              <TableRow><TableCell colSpan={6} className="h-24 text-center">Loading...</TableCell></TableRow>
+            ) : isError ? (
+              <TableRow><TableCell colSpan={6} className="h-24 text-center text-destructive">Error loading data. Please check your connection or try again later.</TableCell></TableRow>
+            ) : terminations.length === 0 ? (
+              <TableRow><TableCell colSpan={6} className="h-24 text-center text-muted-foreground">No terminations found</TableCell></TableRow>
+            ) : (
+              terminations.map((termination) => (
+                <TableRow key={termination.id}>
+                  <TableCell>{termination.termination_to_name || termination.termination_to}</TableCell>
+                  <TableCell>{termination.termination_type || "-"}</TableCell>
+                  <TableCell className="font-medium">{termination.termination_date ? format(new Date(termination.termination_date), "MMM dd, yyyy") : "-"}</TableCell>
+                  <TableCell>{termination.notice_date ? format(new Date(termination.notice_date), "MMM dd, yyyy") : "-"}</TableCell>
+                  <TableCell className="max-w-xs truncate">{termination.description || "-"}</TableCell>
+                  <TableCell className="text-right">
+                    <div className="flex justify-end gap-2">
+                      <Button variant="ghost" size="sm" onClick={() => onEdit(termination)} title="Edit">
+                        <EditIcon className="size-5" />
+                      </Button>
+                      <Button variant="ghost" size="sm" onClick={() => onDelete(termination.id)} disabled={isDeleting} title="Delete">
+                        <DeleteIcon className="size-5 text-destructive" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+  );
+}

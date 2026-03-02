@@ -1,0 +1,23 @@
+# Generic HRIS Frontend - Claude Rules
+
+## Inheritance
+
+This frontend inherits the root architecture rules from `../ReadMe.md`.
+
+Do not restate or override root rules here. Only add frontend-specific rules.
+
+## Iconography
+
+All icons must use Material Icons from `@mui/icons-material`.
+
+## Select `onValueChange` Null Handling
+
+Select components may call `onValueChange` with `string | null`.
+
+## Date Formatting Null Handling
+
+Always handle possibly undefined/null date values when formatting.
+
+## Type Import Paths
+
+Import `User` from `@/types/auth` (do not import from `@/types/user`).

@@ -1,0 +1,511 @@
+/* FullCalendar Base Styles - Figma Design */
+.fc {
+  font-family: "Inter", sans-serif;
+  --fc-border-color: transparent;
+  --fc-daygrid-event-dot-width: 0px;
+  --fc-today-bg-color: transparent;
+}
+
+/* Ensure proper table display */
+.fc-view-harness {
+  display: block !important;
+}
+
+.fc-view-harness-active {
+  display: block !important;
+}
+
+.fc-daygrid {
+  display: block !important;
+}
+
+/* Header Toolbar - Figma Style */
+.fc-header-toolbar {
+  margin-bottom: 0 !important;
+  padding: 24px 32px !important;
+  gap: 0 !important;
+  background-color: #ffffff;
+  border-radius: 8px 8px 0 0;
+}
+
+.fc-toolbar-title {
+  color: #5b5b5b;
+  font-size: 32px !important;
+  font-weight: 500 !important;
+  font-family: "Inter", sans-serif;
+}
+
+/* Buttons - Figma Style */
+.fc-button {
+  background-color: transparent !important;
+  border: none !important;
+  color: #969696 !important;
+  box-shadow: none !important;
+  font-weight: 500 !important;
+  text-transform: capitalize !important;
+  padding: 0 !important;
+  height: 40px !important;
+  width: 40px !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.fc-button:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #5b5b5b !important;
+}
+
+.fc-button-active {
+  background-color: transparent !important;
+  color: #5b5b5b !important;
+}
+
+.fc-button-primary:not(:disabled).fc-button-active,
+.fc-button-primary:not(:disabled):active {
+  background-color: transparent !important;
+  color: #5b5b5b !important;
+}
+
+.fc-button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Grid - Figma Style with Grid Lines */
+.fc-theme-standard {
+  display: block !important;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  padding: 0 !important;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border: none !important;
+  width: 100% !important;
+  table-layout: fixed !important;
+  display: table !important;
+}
+
+.fc-scrollgrid {
+  border-spacing: 0 !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+  display: table !important;
+}
+
+.fc-scrollgrid-section {
+  display: table-row-group !important;
+}
+
+.fc-scrollgrid-section-header {
+  display: table-header-group !important;
+}
+
+.fc-scrollgrid-section-header tr {
+  display: table-row !important;
+}
+
+.fc-scrollgrid-section-header td,
+.fc-scrollgrid-section-header th {
+  background-color: #ffffff;
+  display: table-cell !important;
+  width: calc(100% / 7) !important;
+  border-right: 1px solid #e5e7eb !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.fc-scrollgrid-section-header th:last-child,
+.fc-scrollgrid-section-header td:last-child {
+  border-right: none !important;
+}
+
+.fc-scrollgrid-section-body {
+  display: table-row-group !important;
+}
+
+.fc-scrollgrid-section-body tr {
+  display: table-row !important;
+}
+
+.fc-scrollgrid-section-body td {
+  background-color: #ffffff;
+  display: table-cell !important;
+  width: calc(100% / 7) !important;
+  vertical-align: top !important;
+  position: relative !important;
+  border-right: 1px solid #e5e7eb !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.fc-scrollgrid-section-body td:last-child {
+  border-right: none !important;
+}
+
+.fc-scrollgrid-section-body tr:last-child td {
+  border-bottom: none !important;
+}
+
+.fc-scrollgrid-section-body .fc-day-other {
+  background-color: #fafafa !important;
+}
+
+.fc-daygrid-day-frame {
+  min-height: 80px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Day Headers - Figma Style */
+.fc-col-header-cell {
+  padding: 16px 24px !important;
+  background-color: #ffffff !important;
+}
+
+.fc-col-header-cell-cushion {
+  color: #5b5b5b;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+  text-decoration: none !important;
+}
+
+/* Day Numbers - Figma Style */
+.fc-daygrid-day-top {
+  flex-direction: row !important;
+  padding: 8px 0 !important;
+  justify-content: flex-start !important;
+  min-height: 55px;
+}
+
+.fc-daygrid-day-number {
+  color: #383838;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  width: auto;
+  height: auto;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 0;
+  text-decoration: none !important;
+  z-index: 2;
+  padding: 4px 16px !important;
+  transition: all 0.2s ease;
+}
+
+.fc-day-other .fc-daygrid-day-number {
+  opacity: 0.4;
+}
+
+.fc-day-today .fc-daygrid-day-number {
+  background-color: transparent;
+  color: #383838;
+  font-weight: 400;
+}
+
+/* Day Cells - Figma Style */
+.fc-daygrid-day {
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  padding: 8px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 8px;
+  height: 100%;
+  min-height: 80px;
+}
+
+.fc-daygrid-day:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.fc-day-other {
+  background-color: #fafafa !important;
+}
+
+/* Sunday styling - Gray background */
+.fc-scrollgrid-section-body td:first-child,
+.fc-scrollgrid-section-body td.fc-day-sun {
+  background-color: #fafafa !important;
+}
+
+.fc-scrollgrid-section-header th:first-child,
+.fc-scrollgrid-section-header th.fc-col-header-cell.fc-day-sun {
+  background-color: #fafafa !important;
+}
+
+.fc-daygrid-day.fc-day-sun {
+  background-color: #fafafa !important;
+}
+
+/* Ensure proper table cell structure */
+.fc-daygrid-day-frame {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 120px !important; /* Fixed height */
+  overflow: hidden !important;
+}
+
+/* Events - Figma Style */
+.fc-daygrid-day-events {
+  margin: 0 !important;
+  padding: 4px 2px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto !important;
+  max-height: 68px !important; /* Limit to >2 events (2 events = ~62px) */
+  flex: 1 1 0%;
+  scrollbar-width: thin;
+}
+
+.fc-event {
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  font-family: "Inter", sans-serif;
+  margin: 0 auto !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 99% !important;
+  max-width: 100%;
+}
+
+.fc-event:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.fc-daygrid-event-dot {
+  display: none !important;
+}
+
+/* Remove Today Highlight on Cell Background */
+.fc-day-today {
+  background-color: #ffffff !important;
+}
+
+/* Popover - Figma Style */
+.fc-popover {
+  background-color: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+
+.fc-popover-header {
+  background-color: transparent !important;
+  padding: 0.875rem 1rem !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.fc-popover-title {
+  color: #383838;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-family: "Inter", sans-serif;
+}
+
+.fc-popover-body {
+  padding: 0.75rem !important;
+}
+
+.fc-more-link {
+  color: #5b5b5b !important;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+  margin-top: 4px;
+  display: block;
+  padding: 0.375rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.fc-more-link:hover {
+  color: #383838 !important;
+  text-decoration: none !important;
+  background-color: #fafafa;
+}
+
+/* Week View - Figma Style */
+.fc-timeGrid-view {
+  background-color: #ffffff;
+}
+
+.fc-timegrid {
+  border-spacing: 0 !important;
+  border-collapse: collapse !important;
+}
+
+/* All-day section */
+.fc-timegrid-allday {
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.fc-timegrid-allday-frame {
+  display: flex !important;
+}
+
+.fc-timegrid-allday-cushion {
+  padding: 8px 16px !important;
+  font-size: 12px;
+  color: #5b5b5b;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  text-align: left !important;
+  min-width: 60px;
+  width: 60px !important;
+  border-right: 1px solid #e5e7eb !important;
+}
+
+.fc-timegrid-allday-table {
+  border-spacing: 0 !important;
+  border-collapse: collapse !important;
+}
+
+.fc-timegrid-allday-col {
+  border-right: 1px solid #e5e7eb !important;
+  background-color: #ffffff;
+}
+
+.fc-timegrid-allday-col:last-child {
+  border-right: none !important;
+}
+
+.fc-timegrid-slot {
+  border-bottom: 1px solid #e5e7eb !important;
+  height: 48px !important;
+}
+
+.fc-timegrid-slot-label {
+  border-right: 1px solid #e5e7eb !important;
+  padding: 4px 16px !important;
+  font-size: 12px;
+  color: #5b5b5b;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  min-width: 60px;
+  width: 60px !important;
+}
+
+.fc-timegrid-col {
+  border-right: 1px solid #e5e7eb !important;
+}
+
+.fc-timegrid-col:last-child {
+  border-right: none !important;
+}
+
+.fc-timegrid-col-frame {
+  background-color: #ffffff;
+}
+
+.fc-timegrid-col-events {
+  padding: 4px !important;
+}
+
+.fc-timegrid-event {
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  font-family: "Inter", sans-serif;
+  margin: 2px 0 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fc-timegrid-event:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.fc-timegrid-now-indicator-line {
+  border-color: #3b82f6 !important;
+  border-width: 2px !important;
+}
+
+.fc-timegrid-now-indicator-arrow {
+  border-color: #3b82f6 !important;
+}
+
+/* Week View Column Headers */
+.fc-timegrid-col-header {
+  background-color: #ffffff !important;
+  border-right: 1px solid #e5e7eb !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.fc-timegrid-col-header:last-child {
+  border-right: none !important;
+}
+
+.fc-timegrid-col-header-cell {
+  padding: 16px 24px !important;
+  background-color: #ffffff !important;
+}
+
+.fc-timegrid-col-header-cell-cushion {
+  color: #5b5b5b;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+  text-decoration: none !important;
+}
+
+.fc-timegrid-axis {
+  border-right: 1px solid #e5e7eb !important;
+  background-color: #ffffff !important;
+  width: 60px !important;
+  min-width: 60px !important;
+}
+
+.fc-timegrid-axis-frame {
+  padding: 4px 16px !important;
+  text-align: left !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.fc-timegrid-axis-cushion {
+  font-size: 12px;
+  color: #5b5b5b;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  text-align: left !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Week View Scrollbar */
+.fc-timegrid-body {
+  overflow-y: auto;
+}
+
+.fc-scroller {
+  overflow-y: auto !important;
+}
