@@ -111,7 +111,7 @@ export function GlobalHeader() {
   const isCollapsed = state === "collapsed";
 
   return (
-    <header className="sticky top-0 z-10 w-full flex items-center justify-between gap-2 sm:gap-3 border-b border-border/40 bg-background px-3 sm:px-4 py-2 transition-all duration-200 shadow-none">
+    <header className="sticky top-0 z-10 flex w-full items-center justify-between gap-2 border-b border-border/40 bg-background px-3 py-2 font-sans shadow-none transition-all duration-200 sm:gap-3 sm:px-4">
       <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0 overflow-hidden">
         <SidebarTrigger className="lg:hidden" />
         <button

@@ -107,9 +107,10 @@ function OvertimeLogsPage() {
     <DashboardLayout>
       <main
         className={cn(
-          "w-full flex-1 overflow-auto",
+          "w-full flex-1 overflow-auto font-sans",
           "p-4 sm:p-6 space-y-6 sm:space-y-8"
         )}
+        style={{ scrollbarGutter: "stable" }}
       >
         <OvertimeHeader onExport={handleExport} />
         <UnifiedOvertimeStats filters={filters} />

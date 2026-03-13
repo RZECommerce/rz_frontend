@@ -168,6 +168,9 @@ const nonHrisMenuItems: Array<{
   badge?: string | number;
 }> = [];
 
+const ACTIVE_SIDEBAR_ITEM_CLASS_NAME =
+  "rounded-xl bg-primary text-primary-foreground";
+
 export function DashboardSidebar({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
@@ -324,7 +327,7 @@ export function DashboardSidebar({
             viewBox="0 0 75 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="flex-shrink-0 text-sidebar-foreground"
+            className="shrink-0 text-sidebar-foreground"
           >
             <path
               d="M32.239 35.8926H55.7134C49.7108 34.7816 50.4254 30.1598 51.533 27.9877L74.3643 6.10352e-05H35.4546L42.3147 7.90496L47.0311 2.24335C47.8886 1.28194 50.4611 -0.854523 53.784 0.961462C56.766 2.59118 56.1422 6.1958 55.0703 7.90496L32.239 35.8926Z"
@@ -337,7 +340,7 @@ export function DashboardSidebar({
           </svg>
           <span
             className="text-sidebar-foreground text-sm font-semibold leading-[1.22em] whitespace-nowrap"
-            style={{ fontFamily: "Instrument Sans, sans-serif" }}
+            style={{ fontFamily: "var(--font-sans)" }}
           >
             RZ ECOMMERCE
           </span>
@@ -355,7 +358,7 @@ export function DashboardSidebar({
             viewBox="0 0 75 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="flex-shrink-0 text-sidebar-foreground"
+            className="shrink-0 text-sidebar-foreground"
           >
             <path
               d="M32.239 35.8926H55.7134C49.7108 34.7816 50.4254 30.1598 51.533 27.9877L74.3643 6.10352e-05H35.4546L42.3147 7.90496L47.0311 2.24335C47.8886 1.28194 50.4611 -0.854523 53.784 0.961462C56.766 2.59118 56.1422 6.1958 55.0703 7.90496L32.239 35.8926Z"
@@ -380,7 +383,7 @@ export function DashboardSidebar({
               <div className="group-data-[collapsible=icon]:hidden px-[10px] py-[10px]">
                 <span
                   className="text-sidebar-foreground/60 text-xs font-semibold leading-[1.5em] uppercase"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
+                  style={{ fontFamily: "var(--font-sans)" }}
                 >
                   HRIS
                 </span>
@@ -394,16 +397,16 @@ export function DashboardSidebar({
                       to={item.href}
                       className={cn(
                         "w-[230px] px-4 py-[10px] flex items-center gap-[10px] rounded-lg transition-colors",
-                        "group-data-[collapsible=icon]:!w-10 group-data-[collapsible=icon]:!justify-center group-data-[collapsible=icon]:!p-2",
+                        "group-data-[collapsible=icon]:w-10! group-data-[collapsible=icon]:justify-center! group-data-[collapsible=icon]:p-2!",
                         isActive
-                          ? "bg-[#8A38F5] text-white dark:bg-[#8A38F5] dark:text-white"
+                          ? ACTIVE_SIDEBAR_ITEM_CLASS_NAME
                           : "bg-transparent text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       )}
                       title={state === "collapsed" ? item.label : undefined}
                     >
                       <item.icon
                         className={cn(
-                          "w-5 h-5 flex-shrink-0",
+                          "w-5 h-5 shrink-0",
                           isActive
                             ? "text-white"
                             : "text-sidebar-foreground/70",
@@ -411,7 +414,7 @@ export function DashboardSidebar({
                       />
                       <span
                         className="group-data-[collapsible=icon]:hidden text-base font-medium leading-[1.22em]"
-                        style={{ fontFamily: "Instrument Sans, sans-serif" }}
+                        style={{ fontFamily: "var(--font-sans)" }}
                       >
                         {item.label}
                       </span>
@@ -429,7 +432,7 @@ export function DashboardSidebar({
               <div className="group-data-[collapsible=icon]:hidden px-[10px] py-[10px]">
                 <span
                   className="text-sidebar-foreground/60 text-xs font-semibold leading-[1.5em] uppercase"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
+                  style={{ fontFamily: "var(--font-sans)" }}
                 >
                   others
                 </span>
@@ -443,16 +446,16 @@ export function DashboardSidebar({
                       to={item.href}
                       className={cn(
                         "w-[230px] px-4 py-[10px] flex items-center gap-[10px] rounded-lg transition-colors",
-                        "group-data-[collapsible=icon]:!w-10 group-data-[collapsible=icon]:!justify-center group-data-[collapsible=icon]:!p-2",
+                        "group-data-[collapsible=icon]:w-10! group-data-[collapsible=icon]:justify-center! group-data-[collapsible=icon]:p-2!",
                         isActive
-                          ? "bg-[#8A38F5] text-white dark:bg-[#8A38F5] dark:text-white"
+                          ? ACTIVE_SIDEBAR_ITEM_CLASS_NAME
                           : "bg-transparent text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       )}
                       title={state === "collapsed" ? item.label : undefined}
                     >
                       <item.icon
                         className={cn(
-                          "w-5 h-5 flex-shrink-0",
+                          "w-5 h-5 shrink-0",
                           isActive
                             ? "text-white"
                             : "text-sidebar-foreground/70",
@@ -460,7 +463,7 @@ export function DashboardSidebar({
                       />
                       <span
                         className="group-data-[collapsible=icon]:hidden text-base font-medium leading-[1.22em]"
-                        style={{ fontFamily: "Instrument Sans, sans-serif" }}
+                        style={{ fontFamily: "var(--font-sans)" }}
                       >
                         {item.label}
                       </span>
@@ -475,16 +478,16 @@ export function DashboardSidebar({
                       to={item.href}
                       className={cn(
                         "w-[230px] px-4 py-[10px] flex items-center gap-[10px] rounded-lg transition-colors",
-                        "group-data-[collapsible=icon]:!w-10 group-data-[collapsible=icon]:!justify-center group-data-[collapsible=icon]:!p-2",
+                        "group-data-[collapsible=icon]:w-10! group-data-[collapsible=icon]:justify-center! group-data-[collapsible=icon]:p-2!",
                         isActive
-                          ? "bg-[#8A38F5] text-white dark:bg-[#8A38F5] dark:text-white"
+                          ? ACTIVE_SIDEBAR_ITEM_CLASS_NAME
                           : "bg-transparent text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                       )}
                       title={state === "collapsed" ? item.label : undefined}
                     >
                       <item.icon
                         className={cn(
-                          "w-5 h-5 flex-shrink-0",
+                          "w-5 h-5 shrink-0",
                           isActive
                             ? "text-white"
                             : "text-sidebar-foreground/70",
@@ -492,7 +495,7 @@ export function DashboardSidebar({
                       />
                       <span
                         className="group-data-[collapsible=icon]:hidden text-base font-medium leading-[1.22em]"
-                        style={{ fontFamily: "Instrument Sans, sans-serif" }}
+                        style={{ fontFamily: "var(--font-sans)" }}
                       >
                         {item.label}
                       </span>
@@ -511,20 +514,20 @@ export function DashboardSidebar({
           <div className="flex flex-col gap-2">
             <h3
               className="text-sidebar-foreground text-base font-semibold leading-[1.22em]"
-              style={{ fontFamily: "Instrument Sans, sans-serif" }}
+              style={{ fontFamily: "var(--font-sans)" }}
             >
               Help Center
             </h3>
             <p
               className="text-sidebar-foreground/70 text-sm font-normal leading-[1.22em]"
-              style={{ fontFamily: "Instrument Sans, sans-serif" }}
+              style={{ fontFamily: "var(--font-sans)" }}
             >
               Please contact us for more questions.
             </p>
           </div>
           <Button
-            className="w-full bg-[#8A38F5] text-white hover:bg-[#7A28E5] dark:bg-[#8A38F5] dark:text-white dark:hover:bg-[#7A28E5] rounded-lg py-[10px] px-3 font-bold text-sm leading-[1.22em]"
-            style={{ fontFamily: "Instrument Sans, sans-serif" }}
+            className="w-full rounded-lg bg-primary px-3 py-[10px] font-bold text-primary-foreground hover:opacity-90"
+            style={{ fontFamily: "var(--font-sans)" }}
           >
             Contact Admin
           </Button>

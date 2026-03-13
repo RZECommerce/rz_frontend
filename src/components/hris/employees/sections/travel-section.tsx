@@ -175,7 +175,7 @@ export function TravelSection({ employeeId, isEditMode = true }: TravelSectionPr
               setEditingId(null);
               setIsAddDialogOpen(true);
             }}
-            className="bg-teal-600 hover:bg-teal-700"
+            className="bg-primary hover:bg-primary/90"
           >
             <AddIcon className="size-5 mr-2" />
             Add Travel

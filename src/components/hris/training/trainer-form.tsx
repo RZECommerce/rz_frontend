@@ -109,8 +109,8 @@ export function TrainerForm({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto font-sans [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5">
+        <DialogHeader className="border-b border-border/60 pb-4">
           <DialogTitle>{trainer ? "Edit Trainer" : "Create Trainer"}</DialogTitle>
           <DialogDescription>
             {trainer ? "Update trainer information" : "Add a new trainer (internal or external)"}

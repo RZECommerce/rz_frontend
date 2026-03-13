@@ -230,7 +230,7 @@ export function PipelineTable({
                           )}
                           <DropdownMenuItem
                             onClick={() => deleteMutation.mutate(candidate.id)}
-                            className="text-red-600"
+                            className="text-destructive"
                           >
                             <DeleteIcon className="size-4 mr-2" />
                             Delete

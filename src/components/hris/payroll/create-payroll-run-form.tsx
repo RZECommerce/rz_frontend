@@ -86,9 +86,9 @@ export function CreatePayrollRunForm({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader className="space-y-3">
-          <DialogTitle className="text-2xl font-semibold">
+      <DialogContent className="font-sans sm:max-w-md [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5">
+        <DialogHeader className="space-y-3 border-b border-border/60 pb-4">
+          <DialogTitle className="text-2xl font-semibold text-foreground">
             Create Payroll Run
           </DialogTitle>
           <DialogDescription className="text-base text-muted-foreground">
@@ -185,14 +185,14 @@ export function CreatePayrollRunForm({
               variant="outline"
               onClick={() => onOpenChange(false)}
               disabled={isSubmitting}
-              className="w-full sm:w-auto"
+              className="w-full border-primary/20 text-foreground hover:bg-primary/5 sm:w-auto"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full sm:w-auto bg-foreground text-background hover:bg-foreground/90"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 sm:w-auto"
             >
               {isSubmitting ? "Creating..." : "Create"}
             </Button>

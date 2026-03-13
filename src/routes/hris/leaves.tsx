@@ -20,7 +20,7 @@ import { requireAuth } from "@/lib/auth/route-guards";
 import { cn } from "@/lib/utils";
 import { leaveRequestService } from "@/services/leave.service";
 import type { LeaveRequest, LeaveRequestFilters } from "@/types/leave";
-import { Settings as Settings01Icon } from "@mui/icons-material";
+import { Settings as Settings01Icon, EventNote as LeaveIcon } from "@mui/icons-material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
@@ -213,14 +213,19 @@ function LeavesPage() {
     <DashboardLayout>
       <main
         className={cn(
-          "w-full flex-1 overflow-auto",
+          "w-full flex-1 overflow-auto font-sans",
           "p-4 sm:p-6 space-y-6 sm:space-y-8"
         )}
         style={{ scrollbarGutter: "stable" }}
       >
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Leave Requests</h1>
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl bg-primary/10 p-2 text-primary">
+                <LeaveIcon className="size-6" />
+              </div>
+              <h1 className="text-2xl font-bold">Leave Requests</h1>
+            </div>
             <p className="text-muted-foreground">
               Manage employee leave requests and approvals
             </p>
@@ -229,7 +234,7 @@ function LeavesPage() {
             <Button
               variant="outline"
               onClick={() => setLeaveTypesDialogOpen(true)}
-              className="gap-2"
+              className="gap-2 border-primary/20 hover:bg-primary/5"
             >
               <Settings01Icon className="size-5" />
               Manage Leave Types
@@ -238,11 +243,19 @@ function LeavesPage() {
         </div>
 
         <Tabs defaultValue="requests" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="requests">Leave Requests</TabsTrigger>
-            <TabsTrigger value="blackout-periods">Blackout Periods</TabsTrigger>
-            <TabsTrigger value="encashments">Encashments</TabsTrigger>
-            <TabsTrigger value="expiry-rules">Expiry Rules</TabsTrigger>
+          <TabsList className="grid min-h-11 w-full grid-cols-4 items-stretch rounded-xl border border-border bg-muted/30 p-1.5">
+            <TabsTrigger value="requests" className="flex h-full min-h-8 items-center">
+              Leave Requests
+            </TabsTrigger>
+            <TabsTrigger value="blackout-periods" className="flex h-full min-h-8 items-center">
+              Blackout Periods
+            </TabsTrigger>
+            <TabsTrigger value="encashments" className="flex h-full min-h-8 items-center">
+              Encashments
+            </TabsTrigger>
+            <TabsTrigger value="expiry-rules" className="flex h-full min-h-8 items-center">
+              Expiry Rules
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="requests" className="space-y-6 mt-6">
@@ -279,8 +292,8 @@ function LeavesPage() {
       />
 
       <Dialog open={errorDialog.open} onOpenChange={(open) => setErrorDialog({ ...errorDialog, open })}>
-        <DialogContent>
-          <DialogHeader>
+        <DialogContent className="font-sans">
+          <DialogHeader className="border-b border-border/60 pb-4">
             <DialogTitle>{errorDialog.title}</DialogTitle>
             <DialogDescription>{errorDialog.message}</DialogDescription>
           </DialogHeader>

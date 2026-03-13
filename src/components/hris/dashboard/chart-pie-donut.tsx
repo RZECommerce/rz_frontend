@@ -24,15 +24,15 @@ import { Button } from "@base-ui/react"
 const chartConfig = {
   present: {
     label: "Present",
-    color: "#29333D",
+    color: "var(--primary)",
   },
   late: {
     label: "Late",
-    color: "#454D56",
+    color: "var(--chart-4-hex)",
   },
   absent: {
     label: "Absent",
-    color: "#B0B3B7",
+    color: "var(--chart-silver)",
   },
 } satisfies ChartConfig
 
@@ -151,7 +151,7 @@ export function ChartPieDonutText() {
             </Pie>
             <ChartLegend
               content={<ChartLegendContent nameKey="name" />}
-              className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
+              className="-translate-y-2 flex-wrap gap-2 *:basis-1/4 *:justify-center"
             />
           </PieChart>
         </ChartContainer>

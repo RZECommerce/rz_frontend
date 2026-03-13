@@ -86,12 +86,12 @@ export function PayrollPeriodsTab() {
   return (
     <div className="space-y-6">
       <Tabs value={activeSubTab} onValueChange={setActiveSubTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="periods" className="flex items-center gap-2">
+        <TabsList className="grid min-h-11 w-full grid-cols-2 items-stretch rounded-xl border border-border bg-muted/30 p-1.5 [&>button_svg]:text-primary">
+          <TabsTrigger value="periods" className="flex h-full min-h-8 items-center gap-2">
             <CalendarIcon className="size-5" />
             <span>Payroll Periods</span>
           </TabsTrigger>
-          <TabsTrigger value="info" className="flex items-center gap-2">
+          <TabsTrigger value="info" className="flex h-full min-h-8 items-center gap-2">
             <InfoIcon className="size-5" />
             <span>Information</span>
           </TabsTrigger>

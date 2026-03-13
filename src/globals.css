@@ -2,6 +2,46 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -56,6 +96,10 @@
 /* ========================================================= */
 
 :root {
+  --font-sans: "Bricolage Grotesque", sans-serif;
+  --font-geist-sans: "Bricolage Grotesque", sans-serif;
+  --font-geist-mono: "Bricolage Grotesque", sans-serif;
+
   /* Base */
   --background: #ffffff;
   --foreground: #0f172a;
@@ -87,8 +131,8 @@
   --pink: #ec4899;
   --rose: #f43f5e;
 
-  /* Use Indigo as the primary brand color for a more modern enterprise look */
-  --primary: var(--indigo);
+  /* Brand color */
+  --primary: #c01616;
   --primary-foreground: #ffffff;
 
   --secondary: #f1f5f9;
@@ -165,6 +209,7 @@
   /* Chart axis and grid colors */
   --chart-axis: #94a3b8;
   --chart-grid: #e2e8f0;
+  --chart-silver: #c0c0c0;
 
   /* Holidays */
   /* Holidays - Vibrant for white text support */
@@ -216,9 +261,8 @@
   /* Slate 900 */
   --popover-foreground: var(--foreground);
 
-  --primary: #818cf8;
-  /* Light Indigo */
-  --primary-foreground: #020617;
+  --primary: #dc2626;
+  --primary-foreground: #ffffff;
 
   --secondary: #1e293b;
   /* Slate 800 */
@@ -237,7 +281,7 @@
 
   --border: #1e293b;
   --input: #1e293b;
-  --ring: #818cf8;
+  --ring: var(--primary);
 
   /* Charts */
   --chart-1: #818cf8;
@@ -293,16 +337,17 @@
   /* Chart axis/grid */
   --chart-axis: #64748b;
   --chart-grid: #1e293b;
+  --chart-silver: #d1d5db;
 
   /* Sidebar - Matches dark theme background for seamless look */
   --sidebar: #020617;
   --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #818cf8;
-  --sidebar-primary-foreground: #020617;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #1e293b;
   --sidebar-accent-foreground: #f8fafc;
   --sidebar-border: #1e293b;
-  --sidebar-ring: #818cf8;
+  --sidebar-ring: var(--primary);
 }
 
 /* ========================================================= */
@@ -321,10 +366,7 @@
 
   body {
     @apply bg-background text-foreground antialiased text-[0.925rem] leading-relaxed;
-
-    --font-sans: "Inter", sans-serif;
-    --font-geist-sans: "Geist Sans Variable", sans-serif;
-    --font-geist-mono: "Geist Mono Variable", monospace;
+    font-family: var(--font-sans);
 
     scrollbar-gutter: stable;
   }

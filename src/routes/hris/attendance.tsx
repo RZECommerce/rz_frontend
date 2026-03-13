@@ -97,16 +97,22 @@ function AttendancePage() {
       <AttendanceHeader onAddClick={handleAddClick} />
       <main
         className={cn(
-          "w-full flex-1 overflow-auto",
+          "w-full flex-1 overflow-auto font-sans",
           "p-4 sm:p-6 space-y-6 sm:space-y-8"
         )}
         style={{ scrollbarGutter: "stable" }}
       >
         <Tabs defaultValue="records" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="records">Attendance Records</TabsTrigger>
-            <TabsTrigger value="shift-schedules">Shift Schedules</TabsTrigger>
-            <TabsTrigger value="overtime-policies">Overtime Policies</TabsTrigger>
+          <TabsList className="grid min-h-11 w-full grid-cols-3 items-stretch rounded-xl border border-border bg-muted/30 p-1.5">
+            <TabsTrigger value="records" className="flex h-full min-h-8 items-center">
+              Attendance Records
+            </TabsTrigger>
+            <TabsTrigger value="shift-schedules" className="flex h-full min-h-8 items-center">
+              Shift Schedules
+            </TabsTrigger>
+            <TabsTrigger value="overtime-policies" className="flex h-full min-h-8 items-center">
+              Overtime Policies
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="records" className="space-y-6 mt-6">

@@ -8,7 +8,7 @@ import {
 
 export function DashboardHeader() {
   return (
-    <header className="w-full flex items-center gap-3 px-4 sm:px-6 py-4  bg-background">
+    <header className="flex w-full items-center gap-3 bg-background px-4 py-4 font-sans sm:px-6">
       <SidebarTrigger className="lg:hidden">
         <SidebarLeft01Icon className="size-5" />
       </SidebarTrigger>

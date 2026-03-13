@@ -9,10 +9,10 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <SidebarProvider className="bg-sidebar">
+    <SidebarProvider className="bg-sidebar font-sans">
       <DashboardSidebar />
       <SidebarInset className="h-svh overflow-hidden w-full bg-background">
-        <div className="flex flex-col items-center justify-start h-full w-full overflow-hidden">
+        <div className="flex h-full w-full flex-col items-center justify-start overflow-hidden font-sans">
           <GlobalHeader />
           {children}
         </div>

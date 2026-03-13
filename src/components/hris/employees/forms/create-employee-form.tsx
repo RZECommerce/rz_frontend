@@ -314,9 +314,9 @@ export function CreateEmployeeForm({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader className="space-y-3">
-          <DialogTitle className="text-2xl font-semibold">
+      <DialogContent className="max-h-[90vh] overflow-y-auto font-sans sm:max-w-4xl [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5">
+        <DialogHeader className="space-y-3 border-b border-border/60 pb-4">
+          <DialogTitle className="text-2xl font-semibold text-foreground">
             Create Employee
           </DialogTitle>
           <DialogDescription className="text-base text-muted-foreground">
@@ -351,10 +351,10 @@ export function CreateEmployeeForm({
               notes: data.notes || undefined,
             });
           })}
-          className="space-y-6 mt-6"
+          className="mt-6 space-y-6"
         >
           <Tabs defaultValue="basic" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-4 bg-primary/5">
               <TabsTrigger value="basic">Basic Info</TabsTrigger>
               <TabsTrigger value="employment">Employment</TabsTrigger>
               <TabsTrigger value="address">Address</TabsTrigger>
@@ -414,8 +414,8 @@ export function CreateEmployeeForm({
                 )}
 
                 {createNewUser && (
-                  <div className="p-3 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-                    <p className="text-sm text-blue-900 dark:text-blue-100">
+                  <div className="rounded-lg border border-primary/20 bg-primary/5 p-3">
+                    <p className="text-sm text-foreground">
                       A new user account will be created automatically with email: <strong>{watch("first_name") && watch("last_name") ? `${watch("first_name")?.toLowerCase()}.${watch("last_name")?.toLowerCase()}@${emailDomain}` : `[firstname].[lastname]@${emailDomain}`}</strong>
                     </p>
                   </div>
@@ -898,14 +898,14 @@ export function CreateEmployeeForm({
               variant="outline"
               onClick={() => onOpenChange(false)}
               disabled={isSubmitting}
-              className="w-full sm:w-auto"
+              className="w-full border-primary/20 text-foreground hover:bg-primary/5 sm:w-auto"
             >
               Cancel
             </Button>
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full sm:w-auto bg-foreground text-background hover:bg-foreground/90"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 sm:w-auto"
             >
               {isSubmitting ? "Creating..." : "Create Employee"}
             </Button>

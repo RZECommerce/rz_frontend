@@ -192,9 +192,9 @@ export function ViewEmployeeModal({
   if (isLoading) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="w-full h-full md:h-auto md:max-h-[90vh] md:max-w-6xl overflow-y-auto">
+        <DialogContent className="h-full w-full overflow-y-auto font-sans md:h-auto md:max-h-[90vh] md:max-w-6xl [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5">
           <DialogHeader>
-            <DialogTitle>Employee Details</DialogTitle>
+            <DialogTitle className="text-foreground">Employee Details</DialogTitle>
             <DialogDescription>Loading employee information...</DialogDescription>
           </DialogHeader>
           <div className="h-64 flex items-center justify-center">
@@ -208,9 +208,9 @@ export function ViewEmployeeModal({
   if (!employee) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="w-full h-full md:h-auto md:max-h-[90vh] md:max-w-6xl overflow-y-auto">
+        <DialogContent className="h-full w-full overflow-y-auto font-sans md:h-auto md:max-h-[90vh] md:max-w-6xl [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5">
           <DialogHeader>
-            <DialogTitle>Employee Details</DialogTitle>
+            <DialogTitle className="text-foreground">Employee Details</DialogTitle>
             <DialogDescription>Employee not found</DialogDescription>
           </DialogHeader>
         </DialogContent>
@@ -220,11 +220,11 @@ export function ViewEmployeeModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-full h-full md:h-auto md:max-h-[90vh] md:max-w-6xl overflow-hidden flex flex-col p-0 gap-0">
-        <DialogHeader className="px-4 md:px-6 py-4 border-b shrink-0 text-left">
+      <DialogContent className="flex h-full w-full flex-col gap-0 overflow-hidden p-0 font-sans md:h-auto md:max-h-[90vh] md:max-w-6xl [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5">
+        <DialogHeader className="shrink-0 border-b border-border/60 px-4 py-4 text-left md:px-6">
           <div className="flex items-start justify-between gap-4">
             <div className="space-y-1 min-w-0">
-              <DialogTitle className="text-lg md:text-2xl font-semibold truncate">
+              <DialogTitle className="truncate text-lg font-semibold text-foreground md:text-2xl">
                 {employee.full_name}
               </DialogTitle>
               <DialogDescription className="text-sm md:text-base flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
@@ -241,7 +241,7 @@ export function ViewEmployeeModal({
                   variant="outline"
                   size="sm"
                   onClick={() => setIsEditMode(!isEditMode)}
-                  className="gap-2 h-8 px-2 md:h-9 md:px-3 shrink-0 mt-0.5"
+                  className="mt-0.5 h-8 shrink-0 gap-2 border-primary/20 px-2 text-foreground hover:bg-primary/5 md:h-9 md:px-3"
                 >
                   <Edit01Icon className="size-4 md:size-5" />
                   <span className="hidden md:inline">{isEditMode ? "Cancel" : "Edit"}</span>
@@ -252,7 +252,7 @@ export function ViewEmployeeModal({
                 variant="ghost"
                 size="sm"
                 onClick={() => onOpenChange(false)}
-                className="h-8 w-8 p-0 md:h-9 md:w-9 shrink-0 rounded-full"
+                className="h-8 w-8 shrink-0 rounded-full p-0 text-foreground hover:bg-primary/5 hover:text-foreground md:h-9 md:w-9"
               >
                 <CloseIcon className="size-5" />
               </Button>
@@ -266,27 +266,30 @@ export function ViewEmployeeModal({
           orientation="vertical"
           className="flex-1 flex flex-col md:flex-row overflow-hidden"
         >
-          <div className="w-full md:w-64 border-r-0 md:border-r border-b md:border-b-0 overflow-x-auto md:overflow-y-auto shrink-0 bg-muted/10 md:bg-transparent">
-            <TabsList variant="line" className="!flex-row md:!flex-col h-auto w-max md:w-full bg-transparent p-2 gap-1">
+          <div className="w-full shrink-0 overflow-x-auto border-b bg-primary/5 md:w-64 md:overflow-y-auto md:border-r md:border-b-0 md:bg-transparent">
+            <TabsList
+              variant="line"
+              className="h-auto w-max gap-1 bg-transparent p-2 flex-row! md:w-full md:flex-col! *:data-[slot=tabs-trigger]:hover:bg-primary/5 [&>[data-slot=tabs-trigger][data-active]]:border-primary/20 [&>[data-slot=tabs-trigger][data-active]]:bg-primary/10 [&>[data-slot=tabs-trigger][data-active]]:text-foreground"
+            >
               {/* Employee Information Tabs */}
               <div className="hidden md:block px-2 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                 Employee Information
               </div>
-              <TabsTrigger value="basic" className="!w-auto md:!w-full justify-start whitespace-nowrap">Basic</TabsTrigger>
-              <TabsTrigger value="immigration" className="!w-auto md:!w-full justify-start whitespace-nowrap">Immigration</TabsTrigger>
-              <TabsTrigger value="emergency-contacts" className="!w-auto md:!w-full justify-start whitespace-nowrap">Emergency Contacts</TabsTrigger>
-              <TabsTrigger value="social-profile" className="!w-auto md:!w-full justify-start whitespace-nowrap">Social Profile</TabsTrigger>
-              <TabsTrigger value="document" className="!w-auto md:!w-full justify-start whitespace-nowrap">Document</TabsTrigger>
-              <TabsTrigger value="qualification" className="!w-auto md:!w-full justify-start whitespace-nowrap">Qualification</TabsTrigger>
-              <TabsTrigger value="work-experience" className="!w-auto md:!w-full justify-start whitespace-nowrap">Work Experience</TabsTrigger>
-              <TabsTrigger value="bank-account" className="!w-auto md:!w-full justify-start whitespace-nowrap">Bank Account</TabsTrigger>
-              <TabsTrigger value="award" className="!w-auto md:!w-full justify-start whitespace-nowrap">Award</TabsTrigger>
-              <TabsTrigger value="travel" className="!w-auto md:!w-full justify-start whitespace-nowrap">Travel</TabsTrigger>
-              <TabsTrigger value="training" className="!w-auto md:!w-full justify-start whitespace-nowrap">Training</TabsTrigger>
-              <TabsTrigger value="transfer" className="!w-auto md:!w-full justify-start whitespace-nowrap">Transfer</TabsTrigger>
-              <TabsTrigger value="promotion" className="!w-auto md:!w-full justify-start whitespace-nowrap">Promotion</TabsTrigger>
-              <TabsTrigger value="complaint" className="!w-auto md:!w-full justify-start whitespace-nowrap">Complaint</TabsTrigger>
-              <TabsTrigger value="warning" className="!w-auto md:!w-full justify-start whitespace-nowrap">Warning</TabsTrigger>
+              <TabsTrigger value="basic" className="w-auto! md:w-full! justify-start whitespace-nowrap">Basic</TabsTrigger>
+              <TabsTrigger value="immigration" className="w-auto! md:w-full! justify-start whitespace-nowrap">Immigration</TabsTrigger>
+              <TabsTrigger value="emergency-contacts" className="w-auto! md:w-full! justify-start whitespace-nowrap">Emergency Contacts</TabsTrigger>
+              <TabsTrigger value="social-profile" className="w-auto! md:w-full! justify-start whitespace-nowrap">Social Profile</TabsTrigger>
+              <TabsTrigger value="document" className="w-auto! md:w-full! justify-start whitespace-nowrap">Document</TabsTrigger>
+              <TabsTrigger value="qualification" className="w-auto! md:w-full! justify-start whitespace-nowrap">Qualification</TabsTrigger>
+              <TabsTrigger value="work-experience" className="w-auto! md:w-full! justify-start whitespace-nowrap">Work Experience</TabsTrigger>
+              <TabsTrigger value="bank-account" className="w-auto! md:w-full! justify-start whitespace-nowrap">Bank Account</TabsTrigger>
+              <TabsTrigger value="award" className="w-auto! md:w-full! justify-start whitespace-nowrap">Award</TabsTrigger>
+              <TabsTrigger value="travel" className="w-auto! md:w-full! justify-start whitespace-nowrap">Travel</TabsTrigger>
+              <TabsTrigger value="training" className="w-auto! md:w-full! justify-start whitespace-nowrap">Training</TabsTrigger>
+              <TabsTrigger value="transfer" className="w-auto! md:w-full! justify-start whitespace-nowrap">Transfer</TabsTrigger>
+              <TabsTrigger value="promotion" className="w-auto! md:w-full! justify-start whitespace-nowrap">Promotion</TabsTrigger>
+              <TabsTrigger value="complaint" className="w-auto! md:w-full! justify-start whitespace-nowrap">Complaint</TabsTrigger>
+              <TabsTrigger value="warning" className="w-auto! md:w-full! justify-start whitespace-nowrap">Warning</TabsTrigger>
 
               <Separator className="hidden md:block my-2" />
 
@@ -294,15 +297,15 @@ export function ViewEmployeeModal({
               <div className="hidden md:block px-2 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                 Salary Information
               </div>
-              <TabsTrigger value="basic-salary" className="!w-auto md:!w-full justify-start whitespace-nowrap">Basic Salary</TabsTrigger>
-              <TabsTrigger value="allowances" className="!w-auto md:!w-full justify-start whitespace-nowrap">Allowances</TabsTrigger>
-              <TabsTrigger value="commissions" className="!w-auto md:!w-full justify-start whitespace-nowrap">Commissions</TabsTrigger>
-              <TabsTrigger value="loan" className="!w-auto md:!w-full justify-start whitespace-nowrap">Loan</TabsTrigger>
-              <TabsTrigger value="statutory-deductions" className="!w-auto md:!w-full justify-start whitespace-nowrap">Statutory Deductions</TabsTrigger>
-              <TabsTrigger value="other-payment" className="!w-auto md:!w-full justify-start whitespace-nowrap">Other Payment</TabsTrigger>
-              <TabsTrigger value="overtime" className="!w-auto md:!w-full justify-start whitespace-nowrap">Overtime</TabsTrigger>
-              <TabsTrigger value="salary-pension" className="!w-auto md:!w-full justify-start whitespace-nowrap">Salary Pension</TabsTrigger>
-              <TabsTrigger value="payslip" className="!w-auto md:!w-full justify-start whitespace-nowrap">Payslip</TabsTrigger>
+              <TabsTrigger value="basic-salary" className="w-auto! md:w-full! justify-start whitespace-nowrap">Basic Salary</TabsTrigger>
+              <TabsTrigger value="allowances" className="w-auto! md:w-full! justify-start whitespace-nowrap">Allowances</TabsTrigger>
+              <TabsTrigger value="commissions" className="w-auto! md:w-full! justify-start whitespace-nowrap">Commissions</TabsTrigger>
+              <TabsTrigger value="loan" className="w-auto! md:w-full! justify-start whitespace-nowrap">Loan</TabsTrigger>
+              <TabsTrigger value="statutory-deductions" className="w-auto! md:w-full! justify-start whitespace-nowrap">Statutory Deductions</TabsTrigger>
+              <TabsTrigger value="other-payment" className="w-auto! md:w-full! justify-start whitespace-nowrap">Other Payment</TabsTrigger>
+              <TabsTrigger value="overtime" className="w-auto! md:w-full! justify-start whitespace-nowrap">Overtime</TabsTrigger>
+              <TabsTrigger value="salary-pension" className="w-auto! md:w-full! justify-start whitespace-nowrap">Salary Pension</TabsTrigger>
+              <TabsTrigger value="payslip" className="w-auto! md:w-full! justify-start whitespace-nowrap">Payslip</TabsTrigger>
             </TabsList>
           </div>
 

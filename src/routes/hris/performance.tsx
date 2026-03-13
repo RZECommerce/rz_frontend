@@ -6,6 +6,7 @@ import {
   Flag as GoalsIcon,
   Speed as IndicatorsIcon,
   Assessment as AppraisalsIcon,
+  Insights as PerformanceIcon,
 } from "@mui/icons-material";
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense, useState } from "react";
@@ -26,29 +27,34 @@ function PerformancePage() {
     <DashboardLayout>
       <main
         className={cn(
-          "w-full flex-1 overflow-auto",
+          "w-full flex-1 overflow-auto font-sans",
           "p-4 sm:p-6 space-y-6 sm:space-y-8"
         )}
         style={{ scrollbarGutter: "stable" }}
       >
         <div className="space-y-4">
-          <div>
-            <h1 className="text-2xl font-bold">Performance Management</h1>
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl bg-primary/10 p-2 text-primary">
+                <PerformanceIcon className="size-6" />
+              </div>
+              <h1 className="text-2xl font-bold">Performance Management</h1>
+            </div>
             <p className="text-muted-foreground">Manage goals, indicators, and appraisals</p>
           </div>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="goals" className="flex items-center gap-2">
+          <TabsList className="grid min-h-11 w-full grid-cols-3 items-stretch rounded-xl border border-border bg-muted/30 p-1.5 [&>button_svg]:text-primary">
+            <TabsTrigger value="goals" className="flex h-full min-h-8 items-center gap-2">
               <GoalsIcon className="size-5" />
               <span className="hidden sm:inline">Goals</span>
             </TabsTrigger>
-            <TabsTrigger value="indicators" className="flex items-center gap-2">
+            <TabsTrigger value="indicators" className="flex h-full min-h-8 items-center gap-2">
               <IndicatorsIcon className="size-5" />
               <span className="hidden sm:inline">Indicators</span>
             </TabsTrigger>
-            <TabsTrigger value="appraisals" className="flex items-center gap-2">
+            <TabsTrigger value="appraisals" className="flex h-full min-h-8 items-center gap-2">
               <AppraisalsIcon className="size-5" />
               <span className="hidden sm:inline">Appraisals</span>
             </TabsTrigger>

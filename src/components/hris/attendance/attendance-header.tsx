@@ -26,12 +26,12 @@ export function AttendanceHeader({ onAddClick }: AttendanceHeaderProps) {
   const canExport = useHasPermission("attendance.export");
 
   return (
-    <header className="w-full flex items-center gap-3 px-4 sm:px-6 py-4 bg-background">
+    <header className="flex w-full items-center gap-3 bg-background px-4 py-4 font-sans sm:px-6">
       <SidebarTrigger className="lg:hidden">
         <SidebarLeft01Icon className="size-5" />
       </SidebarTrigger>
 
-      <Calendar01Icon className="size-5" />
+      <Calendar01Icon className="size-5 text-primary" />
       <h1 className="flex-1 font-medium text-base">Attendance</h1>
 
       <span className="hidden sm:block text-sm text-muted-foreground">
@@ -41,7 +41,11 @@ export function AttendanceHeader({ onAddClick }: AttendanceHeaderProps) {
       <div className="hidden sm:block h-6 w-px bg-border" />
 
       {canExport && (
-        <Button variant="outline" size="sm" className="hidden sm:flex gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="hidden gap-2 border-primary/20 hover:bg-primary/5 sm:flex"
+        >
           <FileExportIcon className="size-5" />
           Export
         </Button>

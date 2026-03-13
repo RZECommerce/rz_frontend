@@ -4,8 +4,9 @@ import { requireAuth } from "@/lib/auth/route-guards";
 import { cn } from "@/lib/utils";
 import { settingsService } from "@/services/settings.service";
 import type { SettingsByCategory } from "@/types/settings";
+import { Settings as SettingsIcon } from "@mui/icons-material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/settings")({
@@ -62,7 +63,7 @@ function SettingsPage() {
       <DashboardLayout>
         <main
           className={cn(
-            "w-full flex-1 overflow-auto",
+            "w-full flex-1 overflow-auto font-sans",
             "p-4 sm:p-6 space-y-6 sm:space-y-8",
           )}
           style={{ scrollbarGutter: "stable" }}
@@ -81,20 +82,25 @@ function SettingsPage() {
     <DashboardLayout>
       <main
         className={cn(
-          "w-full flex-1 overflow-auto",
+          "w-full flex-1 overflow-auto font-sans",
           "p-4 sm:p-6 space-y-6 sm:space-y-8",
         )}
         style={{ scrollbarGutter: "stable" }}
       >
         <div className="space-y-4">
-          <div>
-            <h1 className="text-2xl font-bold">Settings</h1>
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl bg-primary/10 p-2 text-primary">
+                <SettingsIcon className="size-6" />
+              </div>
+              <h1 className="text-2xl font-bold">Settings</h1>
+            </div>
             <p className="text-muted-foreground">
               Configure company and system settings. For HRIS settings (Payroll,
               Leave Policies, Attendance), visit{" "}
-              <a href="/hris/settings" className="text-primary hover:underline">
+              <Link to="/hris/settings" className="text-primary hover:underline">
                 HRIS Settings
-              </a>
+              </Link>
               .
             </p>
           </div>

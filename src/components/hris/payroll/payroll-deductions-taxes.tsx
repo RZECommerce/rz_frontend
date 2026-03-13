@@ -28,11 +28,11 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 const chartConfig = {
   taxes: {
     label: "Taxes",
-    color: "#E0C8FF",
+    color: "var(--chart-silver)",
   },
   deductions: {
     label: "Deductions",
-    color: "#AC80F7",
+    color: "var(--chart-4-hex)",
   },
 } satisfies ChartConfig;
 

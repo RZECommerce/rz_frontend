@@ -1,11 +1,5 @@
 /**
- * Font loading setup
- * Replaces next/font/google with @fontsource for Inter and Google Fonts CDN for Geist
+ * Local fonts are loaded via `src/globals.css` using @font-face.
+ * This file remains as the shared app font entrypoint.
  */
-
-// Import Inter from @fontsource
-import "@fontsource/inter/latin.css";
-
-// Geist fonts are loaded via Google Fonts CDN in index.html
-// CSS variables are applied via globals.css
 

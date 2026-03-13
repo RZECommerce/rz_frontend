@@ -11,6 +11,7 @@ import {
     Event as Calendar02Icon,
     GridView as GridIcon,
     Group as UserGroupIcon,
+    EventAvailable as EventsMeetingsIcon,
 } from "@mui/icons-material";
 import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
@@ -49,13 +50,18 @@ function EventsMeetingsPage() {
     <DashboardLayout>
       <main
         className={cn(
-          "w-full flex-1 overflow-auto",
+          "w-full flex-1 overflow-auto font-sans",
           "p-4 sm:p-6 space-y-6 sm:space-y-8"
         )}
       >
         <div className="space-y-4">
-          <div>
-            <h1 className="text-2xl font-bold">Events & Meetings</h1>
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl bg-primary/10 p-2 text-primary">
+                <EventsMeetingsIcon className="size-6" />
+              </div>
+              <h1 className="text-2xl font-bold">Events & Meetings</h1>
+            </div>
             <p className="text-muted-foreground">
               Manage company events, team meetings, and holidays
             </p>
@@ -63,20 +69,20 @@ function EventsMeetingsPage() {
         </div>
 
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="holidays" className="flex items-center gap-2">
+          <TabsList className="grid min-h-11 w-full grid-cols-4 items-stretch rounded-xl border border-border bg-muted/30 p-1.5 [&>button_svg]:text-primary">
+            <TabsTrigger value="holidays" className="flex h-full min-h-8 items-center gap-2">
               <Calendar02Icon className="size-5" />
               <span>Calendar</span>
             </TabsTrigger>
-            <TabsTrigger value="holidays-table" className="flex items-center gap-2">
+            <TabsTrigger value="holidays-table" className="flex h-full min-h-8 items-center gap-2">
               <GridIcon className="size-5" />
               <span>Holiday Table</span>
             </TabsTrigger>
-            <TabsTrigger value="events" className="flex items-center gap-2">
+            <TabsTrigger value="events" className="flex h-full min-h-8 items-center gap-2">
               <Calendar01Icon className="size-5" />
               <span>Events</span>
             </TabsTrigger>
-            <TabsTrigger value="meetings" className="flex items-center gap-2">
+            <TabsTrigger value="meetings" className="flex h-full min-h-8 items-center gap-2">
               <UserGroupIcon className="size-5" />
               <span>Meetings</span>
             </TabsTrigger>

@@ -26,7 +26,7 @@ import { Area, AreaChart, XAxis, YAxis } from "recharts";
 const chartConfig = {
   value: {
     label: "Expense",
-    color: "#7C4DFF",
+    color: "var(--primary)",
   },
 } satisfies ChartConfig;
 
@@ -36,7 +36,7 @@ function CustomTooltip({ active, payload, label }: TooltipProps<number, string>)
   }
 
   return (
-    <div className="bg-background gap-1.5 rounded-lg px-2.5 py-1.5 text-xs shadow-xl grid min-w-[8rem] items-start">
+    <div className="grid min-w-32 items-start gap-1.5 rounded-lg bg-background px-2.5 py-1.5 text-xs shadow-xl">
       <div className="font-medium mb-2">{label}</div>
       <div className="grid gap-1.5">
         {payload.map((item, index) => {

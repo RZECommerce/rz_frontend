@@ -177,7 +177,7 @@ export function ImmigrationSection({ employeeId, isEditMode = true }: Immigratio
         {isEditMode && (
           <Button
             onClick={() => setIsAddDialogOpen(true)}
-            className="bg-teal-600 hover:bg-teal-700"
+            className="bg-primary hover:bg-primary/90"
           >
             <AddIcon className="size-5 mr-2" />
             Add Immigration

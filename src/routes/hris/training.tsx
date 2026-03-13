@@ -13,6 +13,7 @@ import {
     Group as UserGroupIcon,
     Psychology as SkillsIcon,
     CardMembership as CertIcon,
+    School as TrainingIcon,
 } from "@mui/icons-material";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
@@ -68,14 +69,19 @@ function TrainingPage() {
       <main
         ref={mainRef}
         className={cn(
-          "w-full flex-1 overflow-auto",
+          "w-full flex-1 overflow-auto font-sans",
           "p-4 sm:p-6 space-y-6 sm:space-y-8"
         )}
         style={{ scrollbarGutter: "stable" }}
       >
         <div className="space-y-4">
-          <div>
-            <h1 className="text-2xl font-bold">Training</h1>
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl bg-primary/10 p-2 text-primary">
+                <TrainingIcon className="size-6" />
+              </div>
+              <h1 className="text-2xl font-bold">Training</h1>
+            </div>
             <p className="text-muted-foreground">
               Manage training programs, types, and trainers
             </p>
@@ -83,24 +89,24 @@ function TrainingPage() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="training-list" className="flex items-center gap-2">
+          <TabsList className="grid min-h-11 w-full grid-cols-5 items-stretch rounded-xl border border-border bg-muted/30 p-1.5 [&>button_svg]:text-primary">
+            <TabsTrigger value="training-list" className="flex h-full min-h-8 items-center gap-2">
               <Folder01Icon className="size-5" />
               <span className="hidden sm:inline">Training List</span>
             </TabsTrigger>
-            <TabsTrigger value="training-type" className="flex items-center gap-2">
+            <TabsTrigger value="training-type" className="flex h-full min-h-8 items-center gap-2">
               <Settings01Icon className="size-5" />
               <span className="hidden sm:inline">Training Type</span>
             </TabsTrigger>
-            <TabsTrigger value="trainers" className="flex items-center gap-2">
+            <TabsTrigger value="trainers" className="flex h-full min-h-8 items-center gap-2">
               <UserGroupIcon className="size-5" />
               <span className="hidden sm:inline">Trainers</span>
             </TabsTrigger>
-            <TabsTrigger value="skills" className="flex items-center gap-2">
+            <TabsTrigger value="skills" className="flex h-full min-h-8 items-center gap-2">
               <SkillsIcon className="size-5" />
               <span className="hidden sm:inline">Skills</span>
             </TabsTrigger>
-            <TabsTrigger value="certifications" className="flex items-center gap-2">
+            <TabsTrigger value="certifications" className="flex h-full min-h-8 items-center gap-2">
               <CertIcon className="size-5" />
               <span className="hidden sm:inline">Certifications</span>
             </TabsTrigger>

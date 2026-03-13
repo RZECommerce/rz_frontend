@@ -190,7 +190,7 @@ export function BankAccountSection({ employeeId, isEditMode = true }: BankAccoun
               setEditingId(null);
               setIsAddDialogOpen(true);
             }}
-            className="bg-teal-600 hover:bg-teal-700"
+            className="bg-primary hover:bg-primary/90"
           >
             <Add01Icon className="size-5 mr-2" />
             Add Bank Account

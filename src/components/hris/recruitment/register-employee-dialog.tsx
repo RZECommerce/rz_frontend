@@ -133,8 +133,8 @@ export function RegisterEmployeeDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl">
-        <DialogHeader>
+      <DialogContent className="max-w-2xl font-sans [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5">
+        <DialogHeader className="border-b border-border/60 pb-4">
           <DialogTitle>Register Employee</DialogTitle>
           <DialogDescription>
             Convert {candidate.first_name} {candidate.last_name} to an employee

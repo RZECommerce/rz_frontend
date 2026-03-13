@@ -6,6 +6,7 @@ import {
   Error as AlertCircleIcon,
   SyncAlt as ArrowRight01Icon,
   TrendingUp as ArrowUp01Icon,
+  Hub as CoreHrIcon,
   MonetizationOn as Coins01Icon,
   Delete as Delete01Icon,
   Description as File01Icon,
@@ -39,57 +40,66 @@ function CoreHrPage() {
     <DashboardLayout>
       <main
         className={cn(
-          "w-full flex-1 overflow-auto",
+          "w-full flex-1 overflow-auto font-sans",
           "p-4 sm:p-6 space-y-6 sm:space-y-8"
         )}
         style={{ scrollbarGutter: "stable" }}
       >
         <div className="space-y-4">
-          <div>
-            <h1 className="text-2xl font-bold">Core HR</h1>
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl bg-primary/10 p-2 text-primary">
+                <CoreHrIcon className="size-6" />
+              </div>
+              <h1 className="text-2xl font-bold">Core HR</h1>
+            </div>
             <p className="text-muted-foreground">Manage promotions, awards, travels, transfers, resignations, complaints, warnings, and terminations</p>
           </div>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-10">
-            <TabsTrigger value="promotions" className="flex items-center gap-2">
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="w-full [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5"
+        >
+          <TabsList className="grid min-h-11 w-full grid-cols-4 items-stretch rounded-xl border border-border bg-muted/30 p-1.5 lg:grid-cols-10 [&>button_svg]:text-primary">
+            <TabsTrigger value="promotions" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <ArrowUp01Icon className="size-5" />
               <span className="hidden sm:inline">Promotion</span>
             </TabsTrigger>
-            <TabsTrigger value="awards" className="flex items-center gap-2">
+            <TabsTrigger value="awards" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <Coins01Icon className="size-5" />
               <span className="hidden sm:inline">Award</span>
             </TabsTrigger>
-            <TabsTrigger value="travels" className="flex items-center gap-2">
+            <TabsTrigger value="travels" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <Folder01Icon className="size-5" />
               <span className="hidden sm:inline">Travel</span>
             </TabsTrigger>
-            <TabsTrigger value="transfers" className="flex items-center gap-2">
+            <TabsTrigger value="transfers" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <ArrowRight01Icon className="size-5" />
               <span className="hidden sm:inline">Transfer</span>
             </TabsTrigger>
-            <TabsTrigger value="resignations" className="flex items-center gap-2">
+            <TabsTrigger value="resignations" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <File01Icon className="size-5" />
               <span className="hidden sm:inline">Resignations</span>
             </TabsTrigger>
-            <TabsTrigger value="complaints" className="flex items-center gap-2">
+            <TabsTrigger value="complaints" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <File01Icon className="size-5" />
               <span className="hidden sm:inline">Complaints</span>
             </TabsTrigger>
-            <TabsTrigger value="warnings" className="flex items-center gap-2">
+            <TabsTrigger value="warnings" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <AlertCircleIcon className="size-5" />
               <span className="hidden sm:inline">Warnings</span>
             </TabsTrigger>
-            <TabsTrigger value="terminations" className="flex items-center gap-2">
+            <TabsTrigger value="terminations" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <Delete01Icon className="size-5" />
               <span className="hidden sm:inline">Terminations</span>
             </TabsTrigger>
-            <TabsTrigger value="lifecycle" className="flex items-center gap-2">
+            <TabsTrigger value="lifecycle" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <TimelineIcon className="size-5" />
               <span className="hidden sm:inline">Lifecycle</span>
             </TabsTrigger>
-            <TabsTrigger value="status-definitions" className="flex items-center gap-2">
+            <TabsTrigger value="status-definitions" className="flex h-full min-h-8 min-w-0 items-center justify-center gap-2">
               <BadgeIcon className="size-5" />
               <span className="hidden sm:inline">Statuses</span>
             </TabsTrigger>

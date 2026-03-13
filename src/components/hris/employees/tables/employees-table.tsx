@@ -73,11 +73,11 @@ export function EmployeesTable({
   const hasActiveFilters = statusFilter !== "";
 
   return (
-    <div className="rounded-xl  bg-card overflow-hidden px-2">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3  py-4 border-b">
+    <div className="overflow-hidden rounded-xl border border-border/60 bg-card px-2 shadow-xs">
+      <div className="flex flex-col justify-between gap-3 border-b py-4 sm:flex-row sm:items-center">
         <div className="flex items-center gap-2 px-2">
-          <UserGroupIcon className="size-5 text-muted-foreground" />
-          <span className="font-semibold text-muted-foreground">
+          <UserGroupIcon className="size-5 text-primary" />
+          <span className="font-semibold text-foreground">
             Employee list
           </span>
         </div>
@@ -97,7 +97,9 @@ export function EmployeesTable({
             <DropdownMenuTrigger
               className={cn(
                 "inline-flex items-center justify-center gap-2 h-9 px-3 rounded-md border text-sm font-medium",
-                "border-border hover:bg-background bg-muted shadow-xs",
+                hasActiveFilters
+                  ? "border-primary bg-primary/5 text-foreground hover:bg-primary/10"
+                  : "border-border bg-muted shadow-xs hover:bg-background",
               )}
             >
               <FilterIcon className="size-5" />
@@ -152,7 +154,7 @@ export function EmployeesTable({
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/50 hover:bg-muted/50">
+            <TableRow className="bg-primary/5 hover:bg-primary/5">
               <TableHead className="min-w-[100px] text-muted-foreground font-medium">
                 Employee Code
               </TableHead>
@@ -227,7 +229,7 @@ export function EmployeesTable({
                       <Link
                         to="/hris/employees/$id"
                         params={{ id: employee.id }}
-                        className="font-medium hover:underline"
+                        className="font-medium text-foreground transition-colors hover:text-foreground/80 hover:underline"
                         onClick={(e) => e.stopPropagation()}
                       >
                         {employee.full_name}
@@ -237,12 +239,12 @@ export function EmployeesTable({
                       {employee.email}
                     </TableCell>
                     <TableCell className="hidden lg:table-cell">
-                      <span className="px-2 py-0.5 rounded-md bg-muted text-xs font-medium text-muted-foreground">
+                      <span className="rounded-md bg-primary/5 px-2 py-0.5 text-xs font-medium text-foreground ring-1 ring-inset ring-primary/15">
                         {employee.department?.name || "-"}
                       </span>
                     </TableCell>
                     <TableCell className="hidden lg:table-cell">
-                      <span className="px-2 py-0.5 rounded-md bg-muted text-xs font-medium text-muted-foreground">
+                      <span className="rounded-md bg-primary/5 px-2 py-0.5 text-xs font-medium text-foreground ring-1 ring-inset ring-primary/15">
                         {employee.position?.name || "-"}
                       </span>
                     </TableCell>
@@ -264,7 +266,7 @@ export function EmployeesTable({
                             }}
                             title="View employee details"
                           >
-                            <EyeIcon className="size-5" />
+                            <EyeIcon className="size-5 text-primary" />
                           </Button>
                         )}
                         {onDelete && canDelete && (
@@ -291,7 +293,7 @@ export function EmployeesTable({
       </div>
 
       {employeesData && employeesData.total > employeesData.per_page && (
-        <div className="flex items-center justify-between px-5 py-4 border-t">
+        <div className="flex items-center justify-between border-t px-5 py-4">
           <span className="text-xs text-muted-foreground">
             Showing {employees.length} of {employeesData.total} employees
           </span>

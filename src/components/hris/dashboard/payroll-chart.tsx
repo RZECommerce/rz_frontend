@@ -23,15 +23,15 @@ import { format } from "date-fns";
 const chartConfig = {
   gross: {
     label: "Gross Pay",
-    color: "#AC80F7",
+    color: "var(--chart-4-hex)",
   },
   deductions: {
     label: "Deductions",
-    color: "#E0C8FF",
+    color: "var(--chart-silver)",
   },
   net: {
     label: "Net Pay",
-    color: "#7C4DFF",
+    color: "var(--primary)",
   },
 } satisfies ChartConfig;
 
@@ -41,7 +41,7 @@ function CustomTooltip({ active, payload, label }: TooltipProps<number, string>)
   }
 
   return (
-    <div className=" bg-background gap-1.5 rounded-lg  px-2.5 py-1.5 text-xs shadow-xl grid min-w-[8rem] items-start">
+    <div className=" bg-background gap-1.5 rounded-lg  px-2.5 py-1.5 text-xs shadow-xl grid min-w-32 items-start">
       <div className="font-medium mb-2">{label}</div>
       <div className="grid gap-1.5">
         {payload.map((item, index) => {

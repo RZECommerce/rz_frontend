@@ -49,8 +49,8 @@ export function RejectLeaveModal({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent>
-        <DialogHeader>
+      <DialogContent className="font-sans [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5">
+        <DialogHeader className="border-b border-border/60 pb-4">
           <DialogTitle>Reject Leave Request</DialogTitle>
           <DialogDescription>
             {employeeName

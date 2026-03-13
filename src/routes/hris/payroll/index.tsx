@@ -89,25 +89,30 @@ function PayrollPage() {
       <PayrollHeader />
       <main
         className={cn(
-          "w-full flex-1 overflow-auto scroll-gutter-stable",
+          "w-full flex-1 overflow-auto font-sans",
           "p-4 sm:p-6 space-y-6 sm:space-y-8"
         )}
+        style={{ scrollbarGutter: "stable" }}
       >
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="runs" className="flex items-center gap-2">
+        <Tabs
+          value={activeTab}
+          onValueChange={handleTabChange}
+          className="w-full [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5"
+        >
+          <TabsList className="grid min-h-11 w-full grid-cols-4 items-stretch rounded-xl border border-border bg-muted/30 p-1.5 [&>button_svg]:text-primary">
+            <TabsTrigger value="runs" className="flex h-full min-h-8 items-center gap-2">
               <RunIcon className="size-5" />
               <span>Payroll Runs</span>
             </TabsTrigger>
-            <TabsTrigger value="periods" className="flex items-center gap-2">
+            <TabsTrigger value="periods" className="flex h-full min-h-8 items-center gap-2">
               <CalendarIcon className="size-5" />
               <span>Periods</span>
             </TabsTrigger>
-            <TabsTrigger value="salary-components" className="flex items-center gap-2">
+            <TabsTrigger value="salary-components" className="flex h-full min-h-8 items-center gap-2">
               <MoneyIcon className="size-5" />
               <span>Salary Components</span>
             </TabsTrigger>
-            <TabsTrigger value="deductions" className="flex items-center gap-2">
+            <TabsTrigger value="deductions" className="flex h-full min-h-8 items-center gap-2">
               <DeductionIcon className="size-5" />
               <span>Deductions</span>
             </TabsTrigger>
@@ -120,7 +125,10 @@ function PayrollPage() {
                   <h2 className="text-lg font-semibold">Payroll Runs</h2>
                   <p className="text-sm text-muted-foreground">Process and manage payroll runs</p>
                 </div>
-                <Button onClick={handleCreate} className="gap-2">
+                <Button
+                  onClick={handleCreate}
+                  className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+                >
                   <RunIcon className="size-5" />
                   New Payroll Run
                 </Button>

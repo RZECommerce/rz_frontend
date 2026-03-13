@@ -18,13 +18,15 @@ export function OvertimeHeader({ onExport }: OvertimeHeaderProps) {
   const canExport = canView || canManage;
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between font-sans">
       <div className="flex items-center gap-3">
         <SidebarTrigger className="lg:hidden">
           <SidebarLeft01Icon className="size-5" />
         </SidebarTrigger>
 
-        <Clock01Icon className="size-5" />
+        <div className="rounded-xl bg-primary/10 p-2 text-primary">
+          <Clock01Icon className="size-5" />
+        </div>
         <div>
           <h1 className="text-2xl font-bold">Overtime Management</h1>
           <p className="text-muted-foreground">
@@ -34,7 +36,12 @@ export function OvertimeHeader({ onExport }: OvertimeHeaderProps) {
       </div>
 
       {canExport && (
-        <Button variant="outline" size="sm" className="gap-2" onClick={onExport}>
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2 border-primary/20 hover:bg-primary/5"
+          onClick={onExport}
+        >
           <FileExportIcon className="size-5" />
           Export
         </Button>

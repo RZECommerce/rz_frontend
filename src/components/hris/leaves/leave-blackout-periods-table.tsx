@@ -201,8 +201,8 @@ export function LeaveBlackoutPeriodsTable() {
       </Card>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
+        <DialogContent className="max-w-2xl font-sans [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5">
+          <DialogHeader className="border-b border-border/60 pb-4">
             <DialogTitle>
               {editingItem ? "Edit Blackout Period" : "Add Blackout Period"}
             </DialogTitle>
