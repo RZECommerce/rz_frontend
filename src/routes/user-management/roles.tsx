@@ -103,23 +103,19 @@ function RolesPage() {
           isDeleting={deleteRole.isPending}
         />
 
-        {Object.keys(permissions).length > 0 && (
-          <>
-            <CreateRoleDialog
-              open={isCreateDialogOpen}
-              onOpenChange={setIsCreateDialogOpen}
-              permissions={permissions}
-            />
+        <CreateRoleDialog
+          open={isCreateDialogOpen}
+          onOpenChange={setIsCreateDialogOpen}
+          permissions={permissions}
+        />
 
-            {editingRole && (
-              <EditRoleDialog
-                open={!!editingRole}
-                onOpenChange={(open) => !open && setEditingRole(null)}
-                role={editingRole}
-                permissions={permissions}
-              />
-            )}
-          </>
+        {editingRole && (
+          <EditRoleDialog
+            open={!!editingRole}
+            onOpenChange={(open) => !open && setEditingRole(null)}
+            role={editingRole}
+            permissions={permissions}
+          />
         )}
 
         {/* Delete Confirmation Dialog */}

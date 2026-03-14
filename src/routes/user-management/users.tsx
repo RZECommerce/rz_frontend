@@ -297,45 +297,41 @@ function UsersPage() {
           isUpdating={assignRoles.isPending || updateUser.isPending || deleteUser.isPending}
         />
 
-        {roles.length > 0 && (
-          <>
-            {canCreateUsers && (
-              <CreateUserDialog
-                open={isCreateDialogOpen}
-                onOpenChange={setIsCreateDialogOpen}
-                roles={roles}
-                onSubmit={(data: CreateUserDto) => createUser.mutate(data)}
-                isSubmitting={createUser.isPending}
-              />
-            )}
+        {canCreateUsers && (
+          <CreateUserDialog
+            open={isCreateDialogOpen}
+            onOpenChange={setIsCreateDialogOpen}
+            roles={roles}
+            onSubmit={(data: CreateUserDto) => createUser.mutate(data)}
+            isSubmitting={createUser.isPending}
+          />
+        )}
 
-            {editingUser && canUpdateUsers && (
-              <EditUserDialog
-                open={!!editingUser}
-                onOpenChange={(open: boolean) => !open && setEditingUser(null)}
-                user={editingUser}
-                roles={roles}
-                onSubmit={(data: UpdateUserDto) => updateUser.mutate({ id: String(editingUser.id), data })}
-                isSubmitting={updateUser.isPending}
-              />
-            )}
+        {editingUser && canUpdateUsers && (
+          <EditUserDialog
+            open={!!editingUser}
+            onOpenChange={(open: boolean) => !open && setEditingUser(null)}
+            user={editingUser}
+            roles={roles}
+            onSubmit={(data: UpdateUserDto) => updateUser.mutate({ id: String(editingUser.id), data })}
+            isSubmitting={updateUser.isPending}
+          />
+        )}
 
-            {assigningRoleUser && canUpdateUsers && (
-              <AssignRoleDialog
-                open={!!assigningRoleUser}
-                onOpenChange={(open: boolean) => !open && setAssigningRoleUser(null)}
-                user={assigningRoleUser}
-                roles={roles}
-                onAssign={(roleIds: string[]) =>
-                  assignRoles.mutate({
-                    userId: String(assigningRoleUser.id),
-                    roleIds,
-                  })
-                }
-                isSubmitting={assignRoles.isPending}
-              />
-            )}
-          </>
+        {assigningRoleUser && canUpdateUsers && (
+          <AssignRoleDialog
+            open={!!assigningRoleUser}
+            onOpenChange={(open: boolean) => !open && setAssigningRoleUser(null)}
+            user={assigningRoleUser}
+            roles={roles}
+            onAssign={(roleIds: string[]) =>
+              assignRoles.mutate({
+                userId: String(assigningRoleUser.id),
+                roleIds,
+              })
+            }
+            isSubmitting={assignRoles.isPending}
+          />
         )}
 
         {/* Delete Confirmation Dialog */}

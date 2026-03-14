@@ -27,6 +27,16 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   setUser: (user) => {
     set({ user, isAuthenticated: !!user });
+    if (user?.permissions) {
+      useRbacStore.getState().setPermissions(user.permissions);
+    }
+    if (user?.roles) {
+      useRbacStore.getState().setRoles(user.roles);
+    }
+    if (!user) {
+      useRbacStore.getState().setPermissions([]);
+      useRbacStore.getState().setRoles([]);
+    }
   },
 
   clearError: () => {
