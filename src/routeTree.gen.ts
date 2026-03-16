@@ -19,6 +19,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as UserManagementUsersRouteImport } from './routes/user-management/users'
 import { Route as UserManagementRolesRouteImport } from './routes/user-management/roles'
 import { Route as UserManagementAccountRouteImport } from './routes/user-management/account'
+import { Route as JobsIdentifierRouteImport } from './routes/jobs.$identifier'
+import { Route as JobsIdRouteImport } from './routes/jobs.$id'
 import { Route as HrisTrainingRouteImport } from './routes/hris/training'
 import { Route as HrisTimesheetsRouteImport } from './routes/hris/timesheets'
 import { Route as HrisTimeManagementRouteImport } from './routes/hris/time-management'
@@ -95,6 +97,16 @@ const UserManagementRolesRoute = UserManagementRolesRouteImport.update({
 const UserManagementAccountRoute = UserManagementAccountRouteImport.update({
   id: '/user-management/account',
   path: '/user-management/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsIdentifierRoute = JobsIdentifierRouteImport.update({
+  id: '/jobs/$identifier',
+  path: '/jobs/$identifier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsIdRoute = JobsIdRouteImport.update({
+  id: '/jobs/$id',
+  path: '/jobs/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HrisTrainingRoute = HrisTrainingRouteImport.update({
@@ -262,6 +274,8 @@ export interface FileRoutesByFullPath {
   '/hris/time-management': typeof HrisTimeManagementRoute
   '/hris/timesheets': typeof HrisTimesheetsRoute
   '/hris/training': typeof HrisTrainingRoute
+  '/jobs/$id': typeof JobsIdRoute
+  '/jobs/$identifier': typeof JobsIdentifierRoute
   '/user-management/account': typeof UserManagementAccountRoute
   '/user-management/roles': typeof UserManagementRolesRoute
   '/user-management/users': typeof UserManagementUsersRoute
@@ -301,6 +315,8 @@ export interface FileRoutesByTo {
   '/hris/time-management': typeof HrisTimeManagementRoute
   '/hris/timesheets': typeof HrisTimesheetsRoute
   '/hris/training': typeof HrisTrainingRoute
+  '/jobs/$id': typeof JobsIdRoute
+  '/jobs/$identifier': typeof JobsIdentifierRoute
   '/user-management/account': typeof UserManagementAccountRoute
   '/user-management/roles': typeof UserManagementRolesRoute
   '/user-management/users': typeof UserManagementUsersRoute
@@ -341,6 +357,8 @@ export interface FileRoutesById {
   '/hris/time-management': typeof HrisTimeManagementRoute
   '/hris/timesheets': typeof HrisTimesheetsRoute
   '/hris/training': typeof HrisTrainingRoute
+  '/jobs/$id': typeof JobsIdRoute
+  '/jobs/$identifier': typeof JobsIdentifierRoute
   '/user-management/account': typeof UserManagementAccountRoute
   '/user-management/roles': typeof UserManagementRolesRoute
   '/user-management/users': typeof UserManagementUsersRoute
@@ -382,6 +400,8 @@ export interface FileRouteTypes {
     | '/hris/time-management'
     | '/hris/timesheets'
     | '/hris/training'
+    | '/jobs/$id'
+    | '/jobs/$identifier'
     | '/user-management/account'
     | '/user-management/roles'
     | '/user-management/users'
@@ -421,6 +441,8 @@ export interface FileRouteTypes {
     | '/hris/time-management'
     | '/hris/timesheets'
     | '/hris/training'
+    | '/jobs/$id'
+    | '/jobs/$identifier'
     | '/user-management/account'
     | '/user-management/roles'
     | '/user-management/users'
@@ -460,6 +482,8 @@ export interface FileRouteTypes {
     | '/hris/time-management'
     | '/hris/timesheets'
     | '/hris/training'
+    | '/jobs/$id'
+    | '/jobs/$identifier'
     | '/user-management/account'
     | '/user-management/roles'
     | '/user-management/users'
@@ -480,6 +504,8 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
   SettingsRoute: typeof SettingsRoute
+  JobsIdRoute: typeof JobsIdRoute
+  JobsIdentifierRoute: typeof JobsIdentifierRoute
   UserManagementAccountRoute: typeof UserManagementAccountRoute
   UserManagementRolesRoute: typeof UserManagementRolesRoute
   UserManagementUsersRoute: typeof UserManagementUsersRoute
@@ -555,6 +581,20 @@ declare module '@tanstack/react-router' {
       path: '/user-management/account'
       fullPath: '/user-management/account'
       preLoaderRoute: typeof UserManagementAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs/$identifier': {
+      id: '/jobs/$identifier'
+      path: '/jobs/$identifier'
+      fullPath: '/jobs/$identifier'
+      preLoaderRoute: typeof JobsIdentifierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs/$id': {
+      id: '/jobs/$id'
+      path: '/jobs/$id'
+      fullPath: '/jobs/$id'
+      preLoaderRoute: typeof JobsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hris/training': {
@@ -839,6 +879,8 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
   SettingsRoute: SettingsRoute,
+  JobsIdRoute: JobsIdRoute,
+  JobsIdentifierRoute: JobsIdentifierRoute,
   UserManagementAccountRoute: UserManagementAccountRoute,
   UserManagementRolesRoute: UserManagementRolesRoute,
   UserManagementUsersRoute: UserManagementUsersRoute,

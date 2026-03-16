@@ -1,9 +1,9 @@
-export type CandidateStatus = 
-  | "applied" 
-  | "screening" 
-  | "interview" 
-  | "offer" 
-  | "hired" 
+export type CandidateStatus =
+  | "applied"
+  | "screening"
+  | "interview"
+  | "offer"
+  | "hired"
   | "rejected";
 
 export interface JobPosting {
@@ -34,6 +34,7 @@ export interface JobPosting {
   closing_date?: string | null;
   requirements?: string | null;
   benefits?: string | null;
+  application_link?: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -90,6 +91,17 @@ export interface CreateJobPostingDto {
 
 export interface CreateCandidateDto {
   job_posting_id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone?: string | null;
+  cover_letter?: string | null;
+  source?: string | null;
+  resume?: File | null;
+  attachments?: File[] | null;
+}
+
+export interface PublicJobApplicationDto {
   first_name: string;
   last_name: string;
   email: string;
