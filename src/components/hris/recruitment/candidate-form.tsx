@@ -1,26 +1,29 @@
 import { Button } from "@/components/ui/button";
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { recruitmentService } from "@/services/recruitment.service";
 import type { Candidate, CreateCandidateDto } from "@/types/recruitment";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Delete as Delete01Icon, Description as File01Icon } from "@mui/icons-material";
+import {
+  Delete as Delete01Icon,
+  Description as File01Icon,
+} from "@mui/icons-material";
 import { useQuery } from "@tanstack/react-query";
 import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -58,7 +61,9 @@ export function CandidateForm({
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const attachmentsInputRef = React.useRef<HTMLInputElement>(null);
   const [selectedResume, setSelectedResume] = React.useState<File | null>(null);
-  const [selectedAttachments, setSelectedAttachments] = React.useState<File[]>([]);
+  const [selectedAttachments, setSelectedAttachments] = React.useState<File[]>(
+    [],
+  );
 
   const { data: jobPostings = [] } = useQuery({
     queryKey: ["job-postings"],
@@ -92,8 +97,43 @@ export function CandidateForm({
 
   const selectedJobPosting = React.useMemo(
     () => jobPostings.find((job) => job.id === selectedJobPostingId),
-    [jobPostings, selectedJobPostingId]
+    [jobPostings, selectedJobPostingId],
   );
+
+  const resolvedApplicationLink = React.useMemo(() => {
+    if (!selectedJobPosting) return undefined;
+    if (selectedJobPosting.application_link) {
+      const rawLink = selectedJobPosting.application_link;
+
+      if (typeof window !== "undefined") {
+        if (rawLink.startsWith("/jobs/")) {
+          return `${window.location.origin}${rawLink}`;
+        }
+
+        // Replace stale localhost links with the current app origin while preserving the route path.
+        try {
+          const parsedLink = new URL(rawLink);
+          const isLocalHostLink =
+            parsedLink.hostname === "localhost" ||
+            parsedLink.hostname === "127.0.0.1";
+
+          if (isLocalHostLink) {
+            return `${window.location.origin}${parsedLink.pathname}${parsedLink.search}${parsedLink.hash}`;
+          }
+        } catch {
+          // If the stored link is relative or malformed, fallback logic below will handle it.
+        }
+      }
+
+      return rawLink;
+    }
+
+    if (typeof window !== "undefined") {
+      return `${window.location.origin}/jobs/${selectedJobPosting.id}`;
+    }
+
+    return `/jobs/${selectedJobPosting.id}`;
+  }, [selectedJobPosting]);
 
   React.useEffect(() => {
     if (open) {
@@ -136,11 +176,20 @@ export function CandidateForm({
     setValue("attachments", newAttachments);
   };
 
+  const handleCopyApplicationLink = async (link: string) => {
+    try {
+      await navigator.clipboard.writeText(link);
+    } catch {
+      // no-op fallback for restricted clipboard environments
+    }
+  };
+
   const onFormSubmit = (data: CandidateFormData) => {
     onSubmit({
       ...data,
       resume: selectedResume,
-      attachments: selectedAttachments.length > 0 ? selectedAttachments : undefined,
+      attachments:
+        selectedAttachments.length > 0 ? selectedAttachments : undefined,
     });
   };
 
@@ -148,7 +197,9 @@ export function CandidateForm({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto font-sans [&_[data-slot=button][data-variant=outline]]:border-primary/20 [&_[data-slot=button][data-variant=outline]]:hover:bg-primary/5 [&_[data-slot=button][data-variant=ghost]]:hover:bg-primary/5">
         <DialogHeader className="border-b border-border/60 pb-4">
-          <DialogTitle>{candidate ? "Edit Candidate" : "Add Candidate"}</DialogTitle>
+          <DialogTitle>
+            {candidate ? "Edit Candidate" : "Add Candidate"}
+          </DialogTitle>
           <DialogDescription>
             {candidate
               ? "Update candidate information and attachments"
@@ -167,7 +218,9 @@ export function CandidateForm({
                 <Select value={field.value} onValueChange={field.onChange}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a job posting">
-                      {selectedJobPosting ? selectedJobPosting.title : "Select a job posting"}
+                      {selectedJobPosting
+                        ? selectedJobPosting.title
+                        : "Select a job posting"}
                     </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
@@ -181,7 +234,9 @@ export function CandidateForm({
               )}
             />
             {errors.job_posting_id && (
-              <p className="text-sm text-destructive">{errors.job_posting_id.message}</p>
+              <p className="text-sm text-destructive">
+                {errors.job_posting_id.message}
+              </p>
             )}
           </div>
 
@@ -192,7 +247,9 @@ export function CandidateForm({
               </Label>
               <Input id="first_name" {...register("first_name")} />
               {errors.first_name && (
-                <p className="text-sm text-destructive">{errors.first_name.message}</p>
+                <p className="text-sm text-destructive">
+                  {errors.first_name.message}
+                </p>
               )}
             </div>
 
@@ -202,7 +259,9 @@ export function CandidateForm({
               </Label>
               <Input id="last_name" {...register("last_name")} />
               {errors.last_name && (
-                <p className="text-sm text-destructive">{errors.last_name.message}</p>
+                <p className="text-sm text-destructive">
+                  {errors.last_name.message}
+                </p>
               )}
             </div>
           </div>
@@ -227,7 +286,11 @@ export function CandidateForm({
 
           <div className="space-y-2">
             <Label htmlFor="source">Source</Label>
-            <Input id="source" placeholder="e.g., LinkedIn, Website, Referral" {...register("source")} />
+            <Input
+              id="source"
+              placeholder="e.g., LinkedIn, Website, Referral"
+              {...register("source")}
+            />
           </div>
 
           <div className="space-y-2">
@@ -241,9 +304,7 @@ export function CandidateForm({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="resume">
-              Resume (Optional)
-            </Label>
+            <Label htmlFor="resume">Resume (Optional)</Label>
             <Input
               ref={fileInputRef}
               id="resume"
@@ -255,7 +316,9 @@ export function CandidateForm({
               <div className="flex items-center gap-2 p-2 bg-muted rounded-md">
                 <File01Icon className="size-5 text-muted-foreground" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">{selectedResume.name}</p>
+                  <p className="text-sm font-medium truncate">
+                    {selectedResume.name}
+                  </p>
                   <p className="text-xs text-muted-foreground">
                     {(selectedResume.size / 1024).toFixed(2)} KB
                   </p>
@@ -281,7 +344,9 @@ export function CandidateForm({
               <div className="flex items-center gap-2 p-2 bg-muted rounded-md">
                 <File01Icon className="size-5 text-muted-foreground" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">{candidate.resume_file_name}</p>
+                  <p className="text-sm font-medium truncate">
+                    {candidate.resume_file_name}
+                  </p>
                 </div>
               </div>
             )}
@@ -300,10 +365,15 @@ export function CandidateForm({
             {selectedAttachments.length > 0 && (
               <div className="space-y-2">
                 {selectedAttachments.map((file, index) => (
-                  <div key={index} className="flex items-center gap-2 p-2 bg-muted rounded-md">
+                  <div
+                    key={index}
+                    className="flex items-center gap-2 p-2 bg-muted rounded-md"
+                  >
                     <File01Icon className="size-5 text-muted-foreground" />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate">{file.name}</p>
+                      <p className="text-sm font-medium truncate">
+                        {file.name}
+                      </p>
                       <p className="text-xs text-muted-foreground">
                         {(file.size / 1024).toFixed(2)} KB
                       </p>
@@ -321,26 +391,82 @@ export function CandidateForm({
                 ))}
               </div>
             )}
-            {candidate?.attachments && candidate.attachments.length > 0 && selectedAttachments.length === 0 && (
-              <div className="space-y-2">
-                {candidate.attachments.map((attachment) => (
-                  <div key={attachment.id} className="flex items-center gap-2 p-2 bg-muted rounded-md">
-                    <File01Icon className="size-5 text-muted-foreground" />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate">{attachment.file_name}</p>
+            {candidate?.attachments &&
+              candidate.attachments.length > 0 &&
+              selectedAttachments.length === 0 && (
+                <div className="space-y-2">
+                  {candidate.attachments.map((attachment) => (
+                    <div
+                      key={attachment.id}
+                      className="flex items-center gap-2 p-2 bg-muted rounded-md"
+                    >
+                      <File01Icon className="size-5 text-muted-foreground" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">
+                          {attachment.file_name}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
           </div>
 
+          {selectedJobPosting && resolvedApplicationLink && (
+            <div className="space-y-2">
+              <Label htmlFor="job_posting_link">
+                Job Posting Application Link
+              </Label>
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <Input
+                  id="job_posting_link"
+                  value={resolvedApplicationLink}
+                  readOnly
+                />
+                <div className="flex gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() =>
+                      handleCopyApplicationLink(resolvedApplicationLink)
+                    }
+                  >
+                    Copy
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      if (resolvedApplicationLink) {
+                        window.open(
+                          resolvedApplicationLink,
+                          "_blank",
+                          "noopener,noreferrer",
+                        );
+                      }
+                    }}
+                  >
+                    Open
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+            >
               Cancel
             </Button>
             <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : candidate ? "Update" : "Add Candidate"}
+              {isSubmitting
+                ? "Saving..."
+                : candidate
+                  ? "Update"
+                  : "Add Candidate"}
             </Button>
           </DialogFooter>
         </form>
